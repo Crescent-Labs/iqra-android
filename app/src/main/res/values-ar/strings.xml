@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">إقرأ</string>
+    <string name="logo">الشعار</string>
+    <string name="mic">ميكروفون</string>
+    <string name="tap_on_mic">اضغط على الميكروفون و اسرد الآيه كامله او جزء منها</string>
+    <string name="begin_recording">ابدء القراءة</string>
+    <string name="now_recording">يتم التسجيل&#8230;</string> <!-- &#8230; == ... -->
+    <string name="done_recording">انتهى تسجيل الصوت</string>
+
+    <!-- General messages -->
+    <string name="getting_match">يتم المطابقه</string>
+    <string name="something_went_wrong">حدث خطء</string>
+    <string name="server_connection_lost">تم فقدان الإتصال بالخادوم</string>
+    <string name="cannot_understand">لم نفهمك</string>
+    <string name="no_matches">لم نحصل على مطابقه</string>
+    <string name="too_many_results">حصلنا على الكثير من النتائج؛ من بعضها</string>
+    <string name="no_internet_connection">غير متصل بالإنترنت</string>
+
+    <!-- Recognition listener errors -->
+    <string name="error_network_timeout">انقطع الإتصال بالشبكه</string>
+    <string name="error_network">خطء في الشبكه</string>
+    <string name="error_audio">خطء في الصوت</string>
+    <string name="error_server">غير متصل بالإنترنت</string>
+    <string name="error_client">حصل خطء</string>
+    <string name="error_speech_timeout">التسجيل كان طويل</string>
+    <string name="error_no_match">لم نحصل على مطابقه</string>
+    <string name="error_recognizer_busy">الخادوم مزدحم، حاول مرة أخرى</string>
+    <string name="error_insufficient_permissions">تصريح غير كاف</string>
+
+    <!-- Match results -->
+    <string name="chapter_and_verse">%1$d:%2$d</string>
+    <string name="one_result_count">النتيجه:</string>
+    <string name="under_limit_result_count">%1$d نتائج:</string>
+    <string name="result_count">%1$d نتائج (تم اخفاء بعضها):</string>
+
+    <!-- About -->
+    <string name="about_title">عن هذا البرنامج</string>
+    <string name="about_paragraph">اقرأ برنامج مجاني موجه للمسلمين كمصدر لتحديد مواقع و الرجوع لأجزاء من القرآن الكريم من خلال تقنيه تمييز الصوت. لا تنسى المساهمين في تطوير البرنامج من دعائك.
+        \n\nالمساهمون:
+        \nتصميم الشعار: رزان كعود
+        \nتصميم البرنامج: تمجيد عبد الغفور
+        \nالترجمه للعربي: محمد فهد
+        \n\nو الشكر يعم كل من ساهم في مشروع:
+        \nAlfanous
+        \nTanzil.net
+        \nAndroid Asynchronous Http Client</string>
+
+    <!-- Contact -->
+    <string name="contact_title">تواصل مع المطور</string>
+    <string name="contact_paragraph">عندك اقتراح؟ واجهت مشكله تقنيه؟ تود التواصل مع المطور؟ ارسل لنا رساله.\n\n ملاحظه: خانه "البريد" و "الإسم" يمكن تركها فارغه إذا لا ترغب بردنا</string>
+    <string name="contact_form_name">الإسم</string>
+    <string name="contact_form_email">البريد الإكتروني</string>
+    <string name="contact_form_message">الرساله</string>
+    <string name="contact_form_send">ارسل</string>
+    <string name="no_message_entered">لم يتم ادخال رساله</string>
+    <string name="sending_message">يتم ارسال رسالتك</string>
+    <string name="message_sent">تم ارسال رسالتك</string>
+
+    <!-- Permissions -->
+    <string name="internet">إمكانية دخول كاملة إلى الشبكة</string>
+    <string name="record_audio">تسجيل الصوت</string>
+    <string name="missing_permission_title">تصريح مفقود</string>
+    <string name="missing_permission_explanation">تم رفض الوصول
+        «%1$s» يرجى منح الوصول من الإعدادات</string>
+    <string name="disabled_google_app_title">تم تعطيل الباقة!</string>
+    <string name="disabled_google_app_explanation"> من أجل استخدام هذا التطبيق، يتوجب عليك تفعيل تطبيق جوجل «Google». من فضلك قم بتفعيل التطبيق من خلال قسم التطبيقات في قائمة الإعدادات الخاصة بجهازك.</string>
+    <string name="ok">موافق</string>
+    <string name="missing_google_app_title">الباقة المطلوبة مفقودة!</string>
+    <string name="missing_google_app_explanation">«Google» من أجل استخدام هذا التطبيق، يتوجب عليك تحميل تطبيق بحث جوجل</string>
+    <string name="download">تحميل</string>
+
+    <!-- Settings -->
+    <string name="settings_title">خيارات</string>
+    <string name="settings_translation">ترجمه:</string>
+    <string name="save">حفظ</string>
+
+    <!-- Share -->
+    <string name="share_with">شارك على&#8230;</string>
+    <string name="share_subject">برنامج إقرأ</string>
+    <string name="share_message">جرب هذا البرنامج الرائع «إقرأ». حمل البرنامج من هنا:
+        \nhttp://iqraapp.com/download</string>
+    <string name="share_instructions">حدد كل المواد التي تود ضمها إلى رسالتك:</string>
+    <string name="share_arabic_ayah">الآيه بالعربي</string>
+    <string name="share_translation_ayah">الآيه مترجمه</string>
+    <string name="nothing_to_share">لم تختر اي شئ للمشاركه</string>
+    <string name="ayah_translated">ayah</string>
+    <string name="ayah_in_arabic">الآيه</string>
+
+    <!-- Menu bar titles -->
+    <string name="action_settings">خيارات</string>
+    <string name="action_about">عن البرنامج</string>
+    <string name="action_contact">تواصل مع المطور</string>
+    <string name="action_share">شارك</string>
+
+    <!-- Translations -->
+    <string-array name="translation_array">
+        <item>(EN) صحيح إنترناشيونال</item>
+        <item>(EN) آرثر آربري</item>
+        <item>(EN) محمد أسد</item>
+        <item>(EN) عبد الماجد دريابادي</item>
+        <item>(EN) محمد تقي الدين الهلالي ومحمد محسن خان</item>
+        <item>(EN) محمد مارمادوك بكتال</item>
+        <item>(EN) البروفيسور الشيخ حسن الفاتح قريب الله</item>
+        <item>(EN) محمد سرور‎</item>
+        <item>(EN) عبد الله يوسف علي</item>
+        <item>(EN) أبو الأعلى المودودي</item>
+        <item>(EN) محمد حبيب شاكر</item>
+        <item>(EN)  النقل الحرفي</item>
+    </string-array>
+</resources>
