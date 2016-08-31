@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mmmoussa.iqra.SearchResultsActivity" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Arabic Verse"
+        android:id="@+id/arabicVerse"
+        android:layout_alignParentTop="true"
+        android:gravity="right"
+        android:textSize="28sp"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingBottom="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:textColor="#FFFFFF"
+        android:background="#CCCCCC"
+        android:id="@+id/resultCount"
+        android:layout_below="@+id/arabicVerse"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="20sp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/listView"
+        android:paddingTop="0dp"
+        android:paddingBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:divider="@drawable/match_divider"
+        android:dividerHeight="1dp"
+        android:layout_below="@+id/resultCount" />
+
+</RelativeLayout>

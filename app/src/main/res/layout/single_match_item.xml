@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:id="@+id/linearLayout"
+    android:paddingTop="12dp"
+    android:paddingBottom="6dp"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:descendantFocusability="blocksDescendants" >
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:baselineAligned="false" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="English Surah Name"
+                android:id="@+id/translationSurahName"
+                android:textSize="20sp"
+                android:textColor="#444444" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Arabic Surah Name"
+                android:id="@+id/arabicSurahName"
+                android:textSize="19sp"
+                android:gravity="right"
+                android:textColor="#bbbbbb" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="000:000"
+                android:id="@+id/verseNumber"
+                android:textSize="18sp"
+                android:paddingRight="6dp"
+                android:textStyle="italic"
+                android:textColor="#bbbbbb" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/hidableVerses" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Arabic verse"
+            android:id="@+id/arabicVerse"
+            android:textSize="20sp"
+            android:gravity="right"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="English verse"
+            android:id="@+id/translationVerse"
+            android:textSize="16sp"
+            android:gravity="left"
+            android:layout_marginTop="16dp" />
+
+        <ImageButton
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:id="@+id/shareButton"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_share_black_48dp"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:contentDescription="@string/action_share"
+            android:focusable="false"
+            android:padding="10dp" />
+    </LinearLayout>
+
+</LinearLayout>
