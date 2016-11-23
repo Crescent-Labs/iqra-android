@@ -337,6 +337,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                     // unlockScreenOrientation();
                     Log.v(TAG, response.toString());
                     try {
+                        // TODO: JsonReader is more effecient than a JSONObject
                         JSONObject result = response.getJSONObject("result");
                         JSONArray matches = result.getJSONArray("matches");
                         int numOfMatches = matches.length();
