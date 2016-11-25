@@ -34,6 +34,8 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.mmmoussa.iqra.netcomm.NetworkRequestCallback;
+import com.mmmoussa.iqra.netcomm.RequestDelegate;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -311,84 +313,55 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         progress.setCancelable(false);
         progress.show();
 
-        ByteArrayEntity entity = null;
+        RequestDelegate requestDelegate = RequestDelegate.getInstance(context);
+        requestDelegate.performSearchQuery(arabicText, prefs.getString("translation", "en-hilali"), new NetworkRequestCallback() {
+            @Override
+            public void onSuccess(JSONObject response) {
+                progress.dismiss();
 
-        JSONObject jsonParams = new JSONObject();
-        try {
-            jsonParams.put("arabicText", arabicText);
-            jsonParams.put("translation", prefs.getString("translation", "en-hilali"));
-            jsonParams.put("apikey", API_KEY);
-        } catch (JSONException je) {
-            Log.e(TAG, je.getMessage());
-        }
-        try {
-            entity = new ByteArrayEntity(jsonParams.toString().getBytes("UTF-8"));
-        } catch (UnsupportedEncodingException ue) {
-            Log.e(TAG, ue.getMessage());
-        }
+                Log.v(TAG, response.toString());
+                try {
+                    JSONObject result = response.getJSONObject("result");
+                    JSONArray matches = result.getJSONArray("matches");
+                    int numOfMatches = matches.length();
 
-        if (entity != null) {
-            AsyncHttpClient client = new AsyncHttpClient();
-            client.post(getApplicationContext(), apiURL, entity, "application/json", new JsonHttpResponseHandler() {
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                    // called when response HTTP status is "200 OK"
-                    progress.dismiss();
-                    // unlockScreenOrientation();
-                    Log.v(TAG, response.toString());
-                    try {
-                        // TODO: JsonReader is more effecient than a JSONObject
-                        JSONObject result = response.getJSONObject("result");
-                        JSONArray matches = result.getJSONArray("matches");
-                        int numOfMatches = matches.length();
-                        if (numOfMatches == 0) {
-                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.no_matches), Toast.LENGTH_SHORT).show();
-                        } else {
-                            Intent intent = new Intent(getApplicationContext(), SearchResultsActivity.class);
-                            if (numOfMatches > 150) {
-                                Toast.makeText(getApplicationContext(), getResources().getString(R.string.too_many_results), Toast.LENGTH_LONG).show();
-                                JSONArray shortenedMatches = new JSONArray();
-                                for (int i = 0; i < 150; i++) {
-                                    shortenedMatches.put(matches.get(i));
-                                }
-                                result.put("matches", shortenedMatches);
+                    if (numOfMatches == 0) {
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.no_matches), Toast.LENGTH_SHORT).show();
+                    } else {
+                        Intent intent = new Intent(getApplicationContext(), SearchResultsActivity.class);
+                        if (numOfMatches > 150) {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.too_many_results), Toast.LENGTH_LONG).show();
+                            JSONArray shortenedMatches = new JSONArray();
+                            for (int i = 0; i < 150; i++) {
+                                shortenedMatches.put(matches.get(i));
                             }
-                            Log.d(TAG, "Number of matches: " + numOfMatches);
-                            intent.putExtra("response", result.toString());
-                            intent.putExtra("numOfMatches", numOfMatches);
-                            startActivity(intent);
+                            result.put("matches", shortenedMatches);
                         }
-                    } catch (JSONException je) {
-                        Log.e("API result problem: ", je.getMessage());
-                    }
-                }
 
-                @Override
-                public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable e) {
-                    // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-                    progress.dismiss();
-                    // unlockScreenOrientation();
-                    Log.e("API result problem: ", e.getMessage());
+                        Log.d(TAG, "Number of matches: " + numOfMatches);
+                        intent.putExtra("response", result.toString());
+                        intent.putExtra("numOfMatches", numOfMatches);
+                        startActivity(intent);
+                    }
+                } catch (JSONException je) {
+                    Log.e("API result problem: ", je.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable e) {
+                progress.dismiss();
+
+                String errorMessage = e.getMessage();
+                if (errorMessage == null) {
+                    Log.e("API result problem: ", "Socket Timeout");
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.server_connection_lost), Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.e("API result problem: ", errorMessage);
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();
                 }
-
-                @Override
-                public void onFailure(int statusCode, Header[] headers, Throwable e, JSONObject errorResponse) {
-                    // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-                    progress.dismiss();
-                    // unlockScreenOrientation();
-
-                    String errorMessage = e.getMessage();
-                    if (errorMessage == null) {
-                        Log.e("API result problem: ", "Socket Timeout");
-                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.server_connection_lost), Toast.LENGTH_SHORT).show();
-                    } else {
-                        Log.e("API result problem: ", errorMessage);
-                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        }
+            }
+        });
     }
 
     private void lockScreenOrientation() {
