@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,44 +11,44 @@
     tools:context="com.mmmoussa.iqra.ShareResultActivity">
 
     <TextView
+        android:id="@+id/shareInstructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/share_instructions"
-        android:id="@+id/shareInstructions"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/share_instructions"
         android:textSize="16sp" />
 
     <CheckBox
+        android:id="@+id/arabicAyahCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/share_arabic_ayah"
-        android:id="@+id/arabicAyahCheckBox"
-        android:layout_below="@+id/shareInstructions"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/shareInstructions"
+        android:text="@string/share_arabic_ayah" />
 
     <CheckBox
+        android:id="@+id/translationAyahCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/share_translation_ayah"
-        android:id="@+id/translationAyahCheckBox"
-        android:layout_below="@+id/arabicAyahCheckBox"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/arabicAyahCheckBox"
+        android:text="@string/share_translation_ayah" />
 
     <Button
+        android:id="@+id/shareButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/action_share"
-        android:id="@+id/shareButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="0dp"
         android:background="@drawable/rounded_home_button"
-        android:textColor="@android:color/white"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:textSize="17sp"
-        android:layout_marginBottom="0dp" />
+        android:text="@string/action_share"
+        android:textColor="@android:color/white"
+        android:textSize="17sp" />
 </RelativeLayout>

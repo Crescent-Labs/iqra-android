@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,40 +11,40 @@
     tools:context=".RequirementsDialogActivity">
 
     <TextView
+        android:id="@+id/requirementTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/missing_permission_title"
-        android:id="@+id/requirementTitle"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="24sp"
-        android:textColor="#000000" />
+        android:layout_alignParentTop="true"
+        android:text="@string/missing_permission_title"
+        android:textColor="#000000"
+        android:textSize="24sp" />
 
     <TextView
+        android:id="@+id/requirementText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/missing_permission_explanation"
-        android:id="@+id/requirementText"
-        android:layout_below="@+id/requirementTitle"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/requirementTitle"
         android:layout_marginTop="20dp"
+        android:text="@string/missing_permission_explanation"
         android:textSize="16sp" />
 
     <Button
+        android:id="@+id/actionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ok"
-        android:id="@+id/actionButton"
-        android:layout_below="@+id/requirementText"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/requirementText"
         android:layout_marginTop="20dp"
         android:background="@null"
-        android:textColor="@color/colorPrimary"
-        android:minHeight="0dp"
-        android:padding="10dp"
         android:gravity="end"
-        android:minWidth="0dp" />
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:padding="10dp"
+        android:text="@string/ok"
+        android:textColor="@color/colorPrimary" />
 </RelativeLayout>

@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         try {
             ViewConfiguration config = ViewConfiguration.get(this);
             Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
-            if(menuKeyField != null) {
+            if (menuKeyField != null) {
                 menuKeyField.setAccessible(true);
                 menuKeyField.setBoolean(config, false);
             }
@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                 Runtime runtime = Runtime.getRuntime();
                 try {
                     Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
-                    int     exitValue = ipProcess.waitFor();
+                    int exitValue = ipProcess.waitFor();
                     online = (exitValue == 0);
                 } catch (IOException | InterruptedException e) {
                     e.printStackTrace();
@@ -216,8 +216,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                 googleAppIntent.putExtra("requirementType", "googleDisabled");
                 startActivity(googleAppIntent);
             }
-        }
-        catch (PackageManager.NameNotFoundException e) {
+        } catch (PackageManager.NameNotFoundException e) {
             Intent googleAppIntent = new Intent(context, RequirementsDialogActivity.class);
             googleAppIntent.putExtra("requirementType", "googleMissing");
             startActivity(googleAppIntent);
@@ -305,7 +304,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     private void callApi(String arabicText) {
         lockScreenOrientation();
 
-        SpannableString ss1=  new SpannableString(getResources().getString(R.string.getting_match));
+        SpannableString ss1 = new SpannableString(getResources().getString(R.string.getting_match));
         ss1.setSpan(new RelativeSizeSpan(1.7f), 0, ss1.length(), 0);
 
         final ProgressDialog progress = new ProgressDialog(this);
@@ -318,50 +317,56 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
             @Override
             public void onSuccess(JSONObject response) {
                 progress.dismiss();
-
                 Log.v(TAG, response.toString());
-                try {
-                    JSONObject result = response.getJSONObject("result");
-                    JSONArray matches = result.getJSONArray("matches");
-                    int numOfMatches = matches.length();
-
-                    if (numOfMatches == 0) {
-                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.no_matches), Toast.LENGTH_SHORT).show();
-                    } else {
-                        Intent intent = new Intent(getApplicationContext(), SearchResultsActivity.class);
-                        if (numOfMatches > 150) {
-                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.too_many_results), Toast.LENGTH_LONG).show();
-                            JSONArray shortenedMatches = new JSONArray();
-                            for (int i = 0; i < 150; i++) {
-                                shortenedMatches.put(matches.get(i));
-                            }
-                            result.put("matches", shortenedMatches);
-                        }
-
-                        Log.d(TAG, "Number of matches: " + numOfMatches);
-                        intent.putExtra("response", result.toString());
-                        intent.putExtra("numOfMatches", numOfMatches);
-                        startActivity(intent);
-                    }
-                } catch (JSONException je) {
-                    Log.e("API result problem: ", je.getMessage());
-                }
+                parseSearchQueryResponse(response);
             }
 
             @Override
-            public void onFailure(Throwable e) {
+            public void onFailure(Throwable error) {
                 progress.dismiss();
-
-                String errorMessage = e.getMessage();
-                if (errorMessage == null) {
-                    Log.e("API result problem: ", "Socket Timeout");
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.server_connection_lost), Toast.LENGTH_SHORT).show();
-                } else {
-                    Log.e("API result problem: ", errorMessage);
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();
-                }
+                onSearchQueryError(error);
             }
         });
+    }
+
+    private void parseSearchQueryResponse(JSONObject response) {
+        try {
+            JSONObject result = response.getJSONObject("result");
+            JSONArray matches = result.getJSONArray("matches");
+            int numOfMatches = matches.length();
+
+            if (numOfMatches == 0) {
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.no_matches), Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent = new Intent(getApplicationContext(), SearchResultsActivity.class);
+                if (numOfMatches > 150) {
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.too_many_results), Toast.LENGTH_LONG).show();
+                    JSONArray shortenedMatches = new JSONArray();
+                    for (int i = 0; i < 150; i++) {
+                        shortenedMatches.put(matches.get(i));
+                    }
+                    result.put("matches", shortenedMatches);
+                }
+
+                Log.d(TAG, "Number of matches: " + numOfMatches);
+                intent.putExtra("response", result.toString());
+                intent.putExtra("numOfMatches", numOfMatches);
+                startActivity(intent);
+            }
+        } catch (JSONException je) {
+            Log.e("API result problem: ", je.getMessage());
+        }
+    }
+
+    private void onSearchQueryError(Throwable error) {
+        String errorMessage = error.getMessage();
+        if (errorMessage == null) {
+            Log.e("API result problem: ", "Socket Timeout");
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.server_connection_lost), Toast.LENGTH_SHORT).show();
+        } else {
+            Log.e("API result problem: ", errorMessage);
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void lockScreenOrientation() {
@@ -453,7 +458,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                 recordCircle.setImageResource(R.drawable.record_circle_inactive);
                 break;
         }
-        Log.i(TAG,  "Error: " +  error + " - " + mError);
+        Log.i(TAG, "Error: " + error + " - " + mError);
 
         micText.setText(mError);
         recordCircle.getLayoutParams().width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 80, getResources().getDisplayMetrics());
