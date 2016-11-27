@@ -110,4 +110,20 @@
         <item>(EN) Mohammad Habib Shakir</item>
         <item>(EN) Transliteration</item>
     </string-array>
+
+    <string-array name="translation_code">
+        <item>en-sahih</item>
+        <item>en-arberry</item>
+        <item>en-asad</item>
+        <item>en-daryabadi</item>
+        <item>en-hilali</item>
+        <item>en-pickthall</item>
+        <item>en-qaribullah</item>
+        <item>en-sarwar</item>
+        <item>en-yusufali</item>
+        <item>en-maududi</item>
+        <item>en-shakir</item>
+        <item>en-transliteration</item>
+    </string-array>
+
 </resources>

@@ -67,21 +67,7 @@ public class SearchResultsActivity extends AppCompatActivity {
         String response = intent.getStringExtra("response");
         int numOfMatches = intent.getIntExtra("numOfMatches", 1);
 
-        translationShortForms = Arrays.asList(
-                "en-sahih",
-                "en-arberry",
-                "en-asad",
-                "en-daryabadi",
-                "en-hilali",
-                "en-pickthall",
-                "en-qaribullah",
-                "en-sarwar",
-                "en-yusufali",
-                "en-maududi",
-                "en-shakir",
-                "en-transliteration"
-        );
-
+        translationShortForms = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.translation_code)));
 
         configureActionBar();
         bindViews();

@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -45,20 +46,7 @@ public class SettingsActivity extends AppCompatActivity {
         context = this;
         prefs = this.getSharedPreferences("com.mmmoussa.iqra", MODE_PRIVATE);
 
-        translationShortForms = Arrays.asList(
-                "en-sahih",
-                "en-arberry",
-                "en-asad",
-                "en-daryabadi",
-                "en-hilali",
-                "en-pickthall",
-                "en-qaribullah",
-                "en-sarwar",
-                "en-yusufali",
-                "en-maududi",
-                "en-shakir",
-                "en-transliteration"
-        );
+        translationShortForms = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.translation_code)));
 
         String currentTranslation = prefs.getString("translation", "en-hilali");
         int currentTranslationIndex = translationShortForms.indexOf(currentTranslation);
