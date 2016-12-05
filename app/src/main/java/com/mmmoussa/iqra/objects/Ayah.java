@@ -9,7 +9,7 @@ public class Ayah {
     private int ayahNum;
     private int surahNum;
 
-    public Ayah (String arabicAyah, String surahName, String translatedAyah, String translatedSurah, int ayahNum, int surahNum) {
+    public Ayah(String arabicAyah, String surahName, String translatedAyah, String translatedSurah, int ayahNum, int surahNum) {
         this.arabicAyah = arabicAyah;
         this.surahName = surahName;
         this.translatedAyah = translatedAyah;
@@ -18,11 +18,11 @@ public class Ayah {
         this.surahNum = surahNum;
     }
 
-    public String getArabicAyah () {
+    public String getArabicAyah() {
         return arabicAyah;
     }
 
-    public String getSurahName () {
+    public String getSurahName() {
         return surahName;
     }
 

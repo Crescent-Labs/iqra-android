@@ -35,29 +35,21 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
 
-    <LinearLayout
+    <Spinner
+        android:id="@+id/translationSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_below="@id/resultCount"
-        android:orientation="vertical">
+        android:paddingLeft="12dp" />
 
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:divider="@drawable/match_divider"
-            android:dividerHeight="1dp"
-            android:paddingBottom="10dp"
-            android:paddingTop="0dp" />
-
-        <Spinner
-            android:id="@+id/translationSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="12dp" />
-
-    </LinearLayout>
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/translationSpinner"
+        android:divider="@drawable/match_divider"
+        android:dividerHeight="1dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="0dp" />
 
 </RelativeLayout>
