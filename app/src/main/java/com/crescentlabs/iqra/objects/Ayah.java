@@ -1,4 +1,4 @@
-package com.mmmoussa.iqra.objects;
+package com.crescentlabs.iqra.objects;
 
 public class Ayah {
     private String arabicAyah;
@@ -40,5 +40,10 @@ public class Ayah {
 
     public int getSurahNum() {
         return surahNum;
+    }
+
+    @Override
+    public String toString() {
+        return "surahNum:" + surahNum + ", ayahNum:" + ayahNum;
     }
 }

@@ -1,4 +1,4 @@
-package com.mmmoussa.iqra;
+package com.crescentlabs.iqra;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

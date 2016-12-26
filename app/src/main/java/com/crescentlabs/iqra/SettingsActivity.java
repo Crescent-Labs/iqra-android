@@ -1,4 +1,4 @@
-package com.mmmoussa.iqra;
+package com.crescentlabs.iqra;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -44,7 +44,7 @@ public class SettingsActivity extends AppCompatActivity {
         mTracker = application.getDefaultTracker();
 
         context = this;
-        prefs = this.getSharedPreferences("com.mmmoussa.iqra", MODE_PRIVATE);
+        prefs = this.getSharedPreferences("com.crescentlabs.iqra", MODE_PRIVATE);
 
         translationShortForms = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.translation_code)));
 

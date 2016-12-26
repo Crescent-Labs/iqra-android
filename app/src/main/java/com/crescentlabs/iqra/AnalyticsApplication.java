@@ -1,4 +1,4 @@
-package com.mmmoussa.iqra;
+package com.crescentlabs.iqra;
 
 /*
  * Copyright Google Inc. All Rights Reserved.

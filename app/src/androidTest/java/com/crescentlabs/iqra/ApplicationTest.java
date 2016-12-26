@@ -1,4 +1,4 @@
-package com.mmmoussa.iqra;
+package com.crescentlabs.iqra;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

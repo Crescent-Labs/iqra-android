@@ -1,16 +1,20 @@
-package com.mmmoussa.iqra.netcomm;
+package com.crescentlabs.iqra.netcomm;
 
 import android.content.Context;
 import android.util.Log;
 
+import com.crescentlabs.iqra.objects.Ayah;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
-import com.mmmoussa.iqra.BuildConfig;
+import com.crescentlabs.iqra.BuildConfig;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.ByteArrayEntity;
@@ -23,9 +27,11 @@ public class RequestDelegate {
 
     private final String REQUEST_URL = "https://api.iqraapp.com/";
     private final String REQUEST_SEARCH = "search";
+    private final String REQUEST_TRANSLATION = "translations";
     private final String REQUEST_DELIMITER = "/";
     private final String REQUEST_API_PATH = "api" + REQUEST_DELIMITER + API_VERSION;
     private final String REQUEST_SEARCH_URL = REQUEST_URL + REQUEST_API_PATH + REQUEST_DELIMITER + REQUEST_SEARCH;
+    private final String REQUEST_TRANSLATION_URL = REQUEST_URL + REQUEST_API_PATH + REQUEST_DELIMITER + REQUEST_TRANSLATION;
 
     private static RequestDelegate instance = null;
     private Context context;
@@ -53,12 +59,42 @@ public class RequestDelegate {
         performNetworkingRequest(REQUEST_SEARCH_URL, jsonParams, callback);
     }
 
+    public void performTranslationChange(String translation, Ayah[] ayahs, NetworkRequestCallback callback) {
+        JSONObject jsonParams = createTranslationParams(translation, ayahs);
+        performNetworkingRequest(REQUEST_TRANSLATION_URL, jsonParams, callback);
+    }
+
     private JSONObject createSearchQueryParams(String query, String translation) {
         JSONObject jsonParams = new JSONObject();
         try {
             jsonParams.put("arabicText", query);
             jsonParams.put("translation", translation);
             jsonParams.put("apikey", API_KEY);
+        } catch (JSONException je) {
+            Log.e(TAG, je.getMessage());
+        }
+        return jsonParams;
+    }
+
+    private JSONArray createAyahParams(Ayah[] ayahs) throws JSONException {
+        JSONArray params = new JSONArray();
+
+        for (Ayah ayah : ayahs) {
+            JSONObject obj = new JSONObject();
+            obj.put("surahNum", ayah.getSurahNum());
+            obj.put("ayahNum", ayah.getAyahNum());
+            params.put(obj);
+        }
+
+        return params;
+    }
+
+    private JSONObject createTranslationParams(String translation, Ayah[] ayahs) {
+        JSONObject jsonParams = new JSONObject();
+        try {
+            jsonParams.put("apikey", API_KEY);
+            jsonParams.put("translation", translation);
+            jsonParams.put("ayahs", createAyahParams(ayahs));
         } catch (JSONException je) {
             Log.e(TAG, je.getMessage());
         }

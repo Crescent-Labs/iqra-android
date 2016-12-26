@@ -1,4 +1,4 @@
-package com.mmmoussa.iqra;
+package com.crescentlabs.iqra;
 
 import android.Manifest;
 import android.app.ProgressDialog;
@@ -32,23 +32,17 @@ import android.widget.Toast;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.mmmoussa.iqra.netcomm.NetworkRequestCallback;
-import com.mmmoussa.iqra.netcomm.RequestDelegate;
+import com.crescentlabs.iqra.netcomm.NetworkRequestCallback;
+import com.crescentlabs.iqra.netcomm.RequestDelegate;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import cz.msebera.android.httpclient.Header;
-import cz.msebera.android.httpclient.entity.ByteArrayEntity;
 
 public class MainActivity extends AppCompatActivity implements RecognitionListener {
 
@@ -111,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         doPermissionCheck();
         doGoogleAppCheck();
 
-        prefs = this.getSharedPreferences("com.mmmoussa.iqra", MODE_PRIVATE);
+        prefs = this.getSharedPreferences("com.crescentlabs.iqra", MODE_PRIVATE);
 
         recordButton = (ImageButton) findViewById(R.id.recordButton);
         micText = (TextView) findViewById(R.id.micText);

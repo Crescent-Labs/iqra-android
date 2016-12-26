@@ -1,4 +1,4 @@
-package com.mmmoussa.iqra;
+package com.crescentlabs.iqra;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -19,10 +19,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crescentlabs.iqra.objects.Ayah;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.mmmoussa.iqra.netcomm.NetworkRequestCallback;
-import com.mmmoussa.iqra.netcomm.RequestDelegate;
+import com.crescentlabs.iqra.netcomm.NetworkRequestCallback;
+import com.crescentlabs.iqra.netcomm.RequestDelegate;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,7 +57,7 @@ public class SearchResultsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search_results);
 
         // Obtain app preferences
-        prefs = this.getSharedPreferences("com.mmmoussa.iqra", MODE_PRIVATE);
+        prefs = this.getSharedPreferences("com.crescentlabs.iqra", MODE_PRIVATE);
 
         // Obtain the shared Tracker instance.
         AnalyticsApplication application = (AnalyticsApplication) getApplication();
@@ -131,7 +132,12 @@ public class SearchResultsActivity extends AppCompatActivity {
                 }
                 isTranslationChanged = false;
                 prefs.edit().putString("translation", translationShortForms.get(translationSpinner.getSelectedItemPosition())).apply();
-                onTranslationChanged();
+
+                try {
+                    onTranslationChanged();
+                } catch (JSONException ex) {
+                    Log.e(TAG, ex.getMessage());
+                }
             }
 
             @Override
@@ -208,7 +214,7 @@ public class SearchResultsActivity extends AppCompatActivity {
         return matches;
     }
 
-    private void onTranslationChanged() {
+    private void onTranslationChanged() throws JSONException {
         SpannableString ss1 = new SpannableString(getResources().getString(R.string.getting_match));
         ss1.setSpan(new RelativeSizeSpan(1.7f), 0, ss1.length(), 0);
 
@@ -218,11 +224,11 @@ public class SearchResultsActivity extends AppCompatActivity {
         progress.show();
 
         RequestDelegate requestDelegate = RequestDelegate.getInstance(getApplicationContext());
-        requestDelegate.performSearchQuery(arabicVerse.getText().toString(), prefs.getString("translation", "en-hilali"), new NetworkRequestCallback() {
+        requestDelegate.performTranslationChange(prefs.getString("translation", "en-hilali"), getAllCurrentAyahs(), new NetworkRequestCallback() {
             @Override
             public void onSuccess(JSONObject response) {
                 Log.v(TAG, response.toString());
-                parseSearchQueryResponse(response);
+                parseTranslationResponse(response);
                 progress.dismiss();
             }
 
@@ -234,34 +240,48 @@ public class SearchResultsActivity extends AppCompatActivity {
         });
     }
 
-    private void parseSearchQueryResponse(JSONObject response) {
+    private Ayah[] getAllCurrentAyahs() throws JSONException {
+        List<Ayah> results = new ArrayList<>();
+
+        for (int i = 0; i < matchAdapter.getCount(); i ++) {
+            JSONObject obj = matchAdapter.getItem(i);
+            results.add(new Ayah(null, null, null, null, obj.getInt("ayahNum"), obj.getInt("surahNum")));
+        }
+
+        return results.toArray(new Ayah[matchAdapter.getCount()]);
+    }
+
+    private void parseTranslationResponse(JSONObject response) {
         try {
-            JSONObject result = response.getJSONObject("result");
-            JSONArray matches = result.getJSONArray("matches");
-            int numOfMatches = matches.length();
+            JSONArray result = response.getJSONArray("result");
+            int numOfMatches = result.length();
 
             if (numOfMatches > 150) {
-                Toast.makeText(getApplicationContext(), getResources().getString(R.string.too_many_results), Toast.LENGTH_LONG).show();
                 JSONArray shortenedMatches = new JSONArray();
+
                 for (int i = 0; i < 150; i++) {
-                    shortenedMatches.put(matches.get(i));
+                    shortenedMatches.put(result.get(i));
                 }
-                result.put("matches", shortenedMatches);
+
+                result = shortenedMatches;
             }
 
             Log.d(TAG, "Number of matches: " + numOfMatches);
-            updateMatchAdapterDataSet(parseSearchQuery(result.toString()));
+            updateMatchAdapterDataSet(result);
             displayResultCount(numOfMatches);
         } catch (JSONException je) {
             Log.e("API result problem: ", je.getMessage());
         }
     }
 
-    private void updateMatchAdapterDataSet(List<JSONObject> matches) {
-        matchAdapter.clear();
-        for (JSONObject ayah : matches) {
-            matchAdapter.add(ayah);
+    private void updateMatchAdapterDataSet(JSONArray results) throws JSONException {
+        for (int i = 0; i < results.length(); i ++) {
+            JSONObject result = results.getJSONObject(i);
+            JSONObject obj = matchAdapter.getItem(i);
+            obj.put("translationAyah", result.get("translationAyah"));
         }
+
+        matchAdapter.notifyDataSetChanged();
     }
 
     private void onSearchQueryError(Throwable error) {
