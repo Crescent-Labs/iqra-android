@@ -1,4 +1,4 @@
-package com.crescentlabs.iqra;
+package com.mmmoussa.iqra;
 
 import android.Manifest;
 import android.app.ProgressDialog;
@@ -32,8 +32,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.crescentlabs.iqra.netcomm.NetworkRequestCallback;
-import com.crescentlabs.iqra.netcomm.RequestDelegate;
+import com.mmmoussa.iqra.netcomm.NetworkRequestCallback;
+import com.mmmoussa.iqra.netcomm.RequestDelegate;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         doPermissionCheck();
         doGoogleAppCheck();
 
-        prefs = this.getSharedPreferences("com.crescentlabs.iqra", MODE_PRIVATE);
+        prefs = this.getSharedPreferences("com.mmmoussa.iqra", MODE_PRIVATE);
 
         recordButton = (ImageButton) findViewById(R.id.recordButton);
         micText = (TextView) findViewById(R.id.micText);

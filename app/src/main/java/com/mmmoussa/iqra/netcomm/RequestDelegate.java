@@ -1,20 +1,18 @@
-package com.crescentlabs.iqra.netcomm;
+package com.mmmoussa.iqra.netcomm;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.crescentlabs.iqra.objects.Ayah;
+import com.mmmoussa.iqra.objects.Ayah;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
-import com.crescentlabs.iqra.BuildConfig;
+import com.mmmoussa.iqra.BuildConfig;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.ByteArrayEntity;

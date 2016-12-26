@@ -1,4 +1,4 @@
-package com.crescentlabs.iqra;
+package com.mmmoussa.iqra;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -19,11 +19,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.crescentlabs.iqra.objects.Ayah;
+import com.mmmoussa.iqra.objects.Ayah;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.crescentlabs.iqra.netcomm.NetworkRequestCallback;
-import com.crescentlabs.iqra.netcomm.RequestDelegate;
+import com.mmmoussa.iqra.netcomm.NetworkRequestCallback;
+import com.mmmoussa.iqra.netcomm.RequestDelegate;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,7 +57,7 @@ public class SearchResultsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search_results);
 
         // Obtain app preferences
-        prefs = this.getSharedPreferences("com.crescentlabs.iqra", MODE_PRIVATE);
+        prefs = this.getSharedPreferences("com.mmmoussa.iqra", MODE_PRIVATE);
 
         // Obtain the shared Tracker instance.
         AnalyticsApplication application = (AnalyticsApplication) getApplication();

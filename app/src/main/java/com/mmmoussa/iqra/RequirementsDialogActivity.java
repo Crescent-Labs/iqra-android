@@ -1,4 +1,4 @@
-package com.crescentlabs.iqra;
+package com.mmmoussa.iqra;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;

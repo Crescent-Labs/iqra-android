@@ -8,10 +8,10 @@
     {
       "client_info": {
         "mobilesdk_app_id": "",
-        "client_id": "android:com.crescentlabs.iqra",
+        "client_id": "android:com.mmmoussa.iqra",
         "client_type": 1,
         "android_client_info": {
-          "package_name": "com.crescentlabs.iqra",
+          "package_name": "com.mmmoussa.iqra",
           "certificate_hash": []
         }
       },

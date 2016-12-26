@@ -1,6 +1,6 @@
 # Iqra Android Client
 
-Iqra is a tool meant to allow Muslims to search the Quran using speech recognition. This repo contains the code for the [Android client](https://play.google.com/store/apps/details?id=com.crescentlabs.iqra). There are also repos for the [website](https://github.com/Crescent-Labs/iqra-web) and [iOS client](https://github.com/Crescent-Labs/iqra-ios).
+Iqra is a tool meant to allow Muslims to search the Quran using speech recognition. This repo contains the code for the [Android client](https://play.google.com/store/apps/details?id=com.mmmoussa.iqra). There are also repos for the [website](https://github.com/Crescent-Labs/iqra-web) and [iOS client](https://github.com/Crescent-Labs/iqra-ios).
 
 ### Setup
 

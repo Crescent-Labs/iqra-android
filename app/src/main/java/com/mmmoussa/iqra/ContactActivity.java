@@ -1,4 +1,4 @@
-package com.crescentlabs.iqra;
+package com.mmmoussa.iqra;
 
 import android.app.ProgressDialog;
 import android.content.Context;

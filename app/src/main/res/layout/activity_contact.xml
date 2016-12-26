@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusableInTouchMode="true"
-    tools:context="com.crescentlabs.iqra.ContactActivity">
+    tools:context="com.mmmoussa.iqra.ContactActivity">
 
     <ScrollView
         android:id="@+id/scrollView"

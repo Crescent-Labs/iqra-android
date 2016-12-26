@@ -1,4 +1,4 @@
-package com.crescentlabs.iqra.objects;
+package com.mmmoussa.iqra.objects;
 
 public class Ayah {
     private String arabicAyah;
