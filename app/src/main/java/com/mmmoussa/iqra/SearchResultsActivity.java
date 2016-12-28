@@ -256,19 +256,8 @@ public class SearchResultsActivity extends AppCompatActivity {
             JSONArray result = response.getJSONArray("result");
             int numOfMatches = result.length();
 
-            if (numOfMatches > 150) {
-                JSONArray shortenedMatches = new JSONArray();
-
-                for (int i = 0; i < 150; i++) {
-                    shortenedMatches.put(result.get(i));
-                }
-
-                result = shortenedMatches;
-            }
-
             Log.d(TAG, "Number of matches: " + numOfMatches);
             updateMatchAdapterDataSet(result);
-            displayResultCount(numOfMatches);
         } catch (JSONException je) {
             Log.e("API result problem: ", je.getMessage());
         }

@@ -45,7 +45,7 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@id/translationSpinner"
         android:divider="@drawable/match_divider"
         android:dividerHeight="1dp"

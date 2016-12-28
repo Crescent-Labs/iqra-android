@@ -4,16 +4,16 @@ public class Ayah {
     private String arabicAyah;
     private String surahName;
     private String translatedAyah;
-    private String translatedSurah;
+    private String translatedSurahName;
 
     private int ayahNum;
     private int surahNum;
 
-    public Ayah(String arabicAyah, String surahName, String translatedAyah, String translatedSurah, int ayahNum, int surahNum) {
+    public Ayah(String arabicAyah, String surahName, String translatedAyah, String translatedSurahName, int ayahNum, int surahNum) {
         this.arabicAyah = arabicAyah;
         this.surahName = surahName;
         this.translatedAyah = translatedAyah;
-        this.translatedSurah = translatedSurah;
+        this.translatedSurahName = translatedSurahName;
         this.ayahNum = ayahNum;
         this.surahNum = surahNum;
     }
@@ -30,8 +30,8 @@ public class Ayah {
         return translatedAyah;
     }
 
-    public String getTranslatedSurah() {
-        return translatedSurah;
+    public String getTranslatedSurahName() {
+        return translatedSurahName;
     }
 
     public int getAyahNum() {
