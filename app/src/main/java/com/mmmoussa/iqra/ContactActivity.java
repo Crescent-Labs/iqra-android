@@ -32,7 +32,7 @@ public class ContactActivity extends AppCompatActivity {
 
     private Context context;
     public static final String TAG = ContactActivity.class.getSimpleName();
-    private String apiURL = "http://iqraapp.com/api/v1.0/email";
+    private String apiURL = "https://api.iqraapp.com/api/v1.0/email";
 
     private Tracker mTracker;
     private String screenName = "Contact";
@@ -138,20 +138,28 @@ public class ContactActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable e, JSONObject errorResponse) {
-                    // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-                    progress.dismiss();
-                    // unlockScreenOrientation();
+                    handleFailure(e.getMessage(), progress);
+                }
 
-                    String errorMessage = e.getMessage();
-                    if (errorMessage == null) {
-                        Log.e("API result problem: ", "Socket Timeout");
-                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.server_connection_lost), Toast.LENGTH_SHORT).show();
-                    } else {
-                        Log.e("API result problem: ", errorMessage);
-                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();
-                    }
+                @Override
+                public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable e) {
+                    handleFailure(e.getMessage(), progress);
                 }
             });
+        }
+    }
+
+    private void handleFailure(String errorMessage, ProgressDialog progress) {
+        // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+        progress.dismiss();
+        // unlockScreenOrientation();
+
+        if (errorMessage == null) {
+            Log.e("API result problem: ", "Socket Timeout");
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.server_connection_lost), Toast.LENGTH_SHORT).show();
+        } else {
+            Log.e("API result problem: ", errorMessage);
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();
         }
     }
 
