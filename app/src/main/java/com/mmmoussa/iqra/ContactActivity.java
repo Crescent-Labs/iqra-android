@@ -95,7 +95,7 @@ public class ContactActivity extends AppCompatActivity {
     private void callApi(String name, String email, String message) {
         lockScreenOrientation();
 
-        SpannableString ss1=  new SpannableString(getResources().getString(R.string.sending_message));
+        SpannableString ss1 = new SpannableString(getResources().getString(R.string.sending_message));
         ss1.setSpan(new RelativeSizeSpan(1.7f), 0, ss1.length(), 0);
 
         final ProgressDialog progress = new ProgressDialog(this);
