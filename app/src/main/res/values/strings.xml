@@ -111,7 +111,7 @@
         <item>(EN) Transliteration</item>
     </string-array>
 
-    <string-array name="translation_code">
+    <string-array name="translation_code" translatable="false">
         <item>en-sahih</item>
         <item>en-arberry</item>
         <item>en-asad</item>
