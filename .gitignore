@@ -42,3 +42,6 @@ captures/
 # Project configuration
 gradle.properties
 google-services.json
+
+# Allow inclusion of release build in project root directory
+!/app-release.apk

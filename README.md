@@ -17,3 +17,7 @@ Once you've obtained an api key and placed it into `gradle.properties`, you can 
 ### Contributing
 
 Contributions of patches and comments are welcome. If you'd like to contribute a new feature, create an issue for it first and only open a pull request once the feature request has been approved by [the project owner](https://github.com/mmmoussa).
+
+### Installing APK directly
+
+If you want to install the latest release of Iqra but do not have access to the Play store, the APK is available in this repo as `app-release.apk`.
