@@ -9,8 +9,8 @@ android {
         applicationId "com.mmmoussa.iqra"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 3
-        versionName "2.1.0"
+        versionCode 4
+        versionName "2.2.0"
     }
     buildTypes {
         debug {
