@@ -2,7 +2,9 @@ package com.mmmoussa.iqra;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -27,6 +29,10 @@ public class AboutActivity extends AppCompatActivity {
         // Obtain the shared Tracker instance.
         AnalyticsApplication application = (AnalyticsApplication) getApplication();
         mTracker = application.getDefaultTracker();
+
+        // Make html links in the text clickable
+        TextView aboutTextView = (TextView) findViewById(R.id.aboutTextView);
+        aboutTextView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     @Override
