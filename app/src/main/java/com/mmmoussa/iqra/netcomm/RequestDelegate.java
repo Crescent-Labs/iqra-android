@@ -23,7 +23,7 @@ public class RequestDelegate {
     private final String API_KEY = BuildConfig.IQRA_API_KEY;
     private final String API_VERSION = "v3.0";
 
-    private final String REQUEST_URL = "https://api.iqraapp.com/";
+    private final String REQUEST_URL = BuildConfig.IQRA_API_URL;
     private final String REQUEST_SEARCH = "search";
     private final String REQUEST_TRANSLATION = "translations";
     private final String REQUEST_DELIMITER = "/";

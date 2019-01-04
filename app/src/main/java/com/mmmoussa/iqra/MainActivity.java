@@ -52,8 +52,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     private boolean hasInternetPermission;
     private boolean hasRecordAudioPermission;
 
-    private String apiURL = "https://api.iqraapp.com/api/v3.0/search";
-    private String API_KEY = BuildConfig.IQRA_API_KEY;
     public static final String TAG = MainActivity.class.getSimpleName();
     private SpeechRecognizer mSpeechRecognizer = null;
     private Intent mSpeechRecognizerIntent;

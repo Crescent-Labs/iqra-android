@@ -4,15 +4,14 @@ Iqra is a tool meant to allow Muslims to search the Quran using speech recogniti
 
 ### Setup
 
-In order to run the app, open the project in Android Studio. Before performing a gradle sync, a few steps need to be taken. First, rename the `sample-google-services.json` file in the `app` directory to `google-services.json`. Next, create a file named `gradle.properties` in the project root directory. Copy the following line into the file:
+In order to run the app, open the project in Android Studio. Before performing a gradle sync, a few steps need to be taken. First, rename the `sample-google-services.json` file in the `app` directory to `google-services.json`. Next, create a file named `gradle.properties` in the project root directory. Copy the following lines into the file:
 
 ```
-IQRA_API_KEY=yourAPIKey
+IQRA_API_KEY=myAPIKey
+IQRA_API_URL=http://127.0.0.1:5000/
 ```
 
-You'll need to replace the `IQRA_API_KEY` variable's value with a valid key. You can obtain a key for testing by sending an email to info@iqraapp.com with subject line "api key request". Please allow some time for your request to be processed and an api key sent back.
-
-Once you've obtained an api key and placed it into `gradle.properties`, you can run a gradle sync and then run the app.
+You can now run a gradle sync and then run the app. To test the app's functionality, you will need to clone [the Iqra API server](https://github.com/Crescent-Labs/iqra-api) and then run it.
 
 ### Contributing
 
